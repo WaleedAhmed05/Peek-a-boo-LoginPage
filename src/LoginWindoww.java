@@ -20,6 +20,11 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import java.awt.Button;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class LoginWindoww {
 
@@ -29,6 +34,8 @@ public class LoginWindoww {
 	private JPasswordField jpasswordField;
 	private JLabel jLBG;
 	private JLabel jl1 = new JLabel("");
+	private JButton btnLogIn;
+	private JLabel jlResult = new JLabel("");
 
 	/**
 	 * Launch the application.
@@ -55,22 +62,38 @@ public class LoginWindoww {
 	
 
 public void changephoto(String pos) {
-	
-	
+		
 //	String pos_string=Integer.toString(pos);
 	String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+pos+".png";
 	ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
 	jl1.setIcon(imageIcon);
 	
-}	
+}
+
+public void validation(String email, String pass) {
+		
 	
-public void photochanger(String loc) {
+	if(email.equals("waleedahmed2021@gmail.com")) {
 		
-		String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Image5.jpg";
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-//		jl1.setIcon(imageIcon);
 		
+		if(pass.equals("12345")) {
+			jlResult.setText("Login Success");
+			changephoto("default");
+		}
+		else
+			
+			jlResult.setText("Incorrect Password");
+		    changephoto("confuse");
 	}
+	else
+	{		
+		jlResult.setText("Incorrect Email.");
+		changephoto("confuse");}
+		
+		
+}//Validation()
+	
+
 
 public void char_counter() {
 	int[] myIntArray = new int[30];
@@ -91,41 +114,43 @@ public void char_counter() {
 			frmWelcome.setLocationRelativeTo(null); 
 			frmWelcome.setResizable(false);
 			frmWelcome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//	frmWelcome.setIcon((new ImageIcon(("C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg.jpg"));
-			
-//			String bgImage="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg.jpg";
-//			ImageIcon imageIcon = new ImageIcon(new ImageIcon(bgImage));
-//			frmWelcome.setIcon(imageIcon);
+		
 			
 			
 			
 			frmWelcome.getContentPane().setLayout(null);
-			
-	//		JLabel jl1 = new JLabel("");
 			jl1.addPropertyChangeListener(new PropertyChangeListener() {
 				public void propertyChange(PropertyChangeEvent evt) {
 				}
 			});
 			jl1.setBounds(122, 107, 243, 204);
 			
-			//temp code here
-			String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\default.png";
-			ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-			jl1.setIcon(imageIcon);
+			changephoto("default");
+			
+			btnLogIn = new JButton("Log In..");
+			btnLogIn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//log In button here
+					String email0=tFEmail.getText();
+					String pass0=jpasswordField.getText();
+				//	jlResult.setText(jpasswordField.getText());
+					validation(email0,pass0);
+					
+					
+				}
+			});
+			jlResult.setHorizontalAlignment(SwingConstants.CENTER);
+			jlResult.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 			
 			
+			jlResult.setBounds(122, 472, 184, 22);
+			frmWelcome.getContentPane().add(jlResult);
+			btnLogIn.setFont(new Font("Trebuchet MS", Font.BOLD, 19));
+			btnLogIn.setBounds(158, 436, 119, 34);
+			frmWelcome.getContentPane().add(btnLogIn);
 			
+						
 			
-			
-			
-			
-			
-			
-			//temp code here
-			
-		//	ImageIcon imgThisImg = new ImageIcon("Image1.png");
-			//jl1.setIcon(new ImageIcon("Images/Image1.png"));
-	//real		jl1.setIcon(new ImageIcon("C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Image3.png"));
 			frmWelcome.getContentPane().add(jl1);
 			
 			tFEmail = new JTextField();
@@ -143,10 +168,6 @@ public void char_counter() {
 					
 					if(txtfieldlen<=2 && txtfieldlen>=0)  {
 						
-						
-					//	String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+Integer.toString(1)+".png";
-					//	ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-					//	jl1.setIcon(imageIcon);
 						changephoto("1");
 						
 					}
@@ -186,16 +207,7 @@ public void char_counter() {
 						
 					}
 					
-					
-					
-					
-					
-//					String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Image4.png";
-//					ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-//					jl1.setIcon(imageIcon);
-					
-					
-					
+															
 				}
 				@Override
 				public void keyReleased(KeyEvent e) {
@@ -258,10 +270,8 @@ public void char_counter() {
 			
 			
      		frmWelcome.getContentPane().add(jLBG);
-	}
-	//jl1.initialize();
-	
-}
+	}//initialize()
+}//LoginWindow()
 
 
 
