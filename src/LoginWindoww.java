@@ -250,8 +250,10 @@ public void char_counter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					
-					String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\default.png";
-					ImageIcon imageIcon = new ImageIcon(new ImageIcon(iconlink).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
+					//String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\default.png";
+					//String iconlink=getClass().getResource("Peek-a-boo-LoginPage/Images/Image1.png");
+					//ImageIcon icon = new ImageIcon(LoginWindoww.class.getResource("/Images/Image1.png"));
+					ImageIcon imageIcon = new ImageIcon(new ImageIcon(LoginWindoww.class.getResource("/Images/Moveable/default.png")).getImage().getScaledInstance(190, 190, Image.SCALE_DEFAULT));
 					jl1.setIcon(imageIcon);
 					
 				}
