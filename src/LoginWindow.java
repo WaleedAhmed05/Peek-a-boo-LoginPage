@@ -77,13 +77,18 @@ public void validation(String email, String pass) {
 		
 		
 		if(pass.equals("12345")) {
+			
 			jlResult.setText("Login Success");
 			changephoto("default");
+			
+			
 		}
 		else
-			
+		{
 			jlResult.setText("Incorrect Password");
-		    changephoto("confuse");
+		    changephoto("confuse");}
+		
+		    
 	}
 	else
 	{		
