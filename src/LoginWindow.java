@@ -27,6 +27,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Cursor;
+import java.awt.Insets;
+import javax.swing.border.TitledBorder;
 
 public class LoginWindow {
 
@@ -40,6 +43,7 @@ public class LoginWindow {
 	private JLabel jlResult = new JLabel("");
 	private JTextField tEmailHint;
 	private JTextField tFPassHint;
+	private JLabel jLMinimize;
 	
 
 	/**
@@ -125,6 +129,7 @@ public class LoginWindow {
 	 */
 	private void initialize() {
 		frmWelcome = new JFrame();
+		frmWelcome.setUndecorated(true);
 		frmWelcome.setTitle("Welcome");
 		// frame.setBounds(0, 0, 650, 600);
 		frmWelcome.setSize(450, 650);
@@ -142,6 +147,7 @@ public class LoginWindow {
 		changephoto("default");
 
 		btnLogIn = new JButton("Log In..");
+		btnLogIn.setBorder(null);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// log In button here
@@ -149,6 +155,8 @@ public class LoginWindow {
 				String pass0 = tFPass.getText();
 				// jlResult.setText(jpasswordField.getText());
 				validation(email0, pass0);
+				
+				
 
 			}
 		});
@@ -207,6 +215,31 @@ public class LoginWindow {
 					tFPassHint.setVisible(false);}
 		//	}
 		});
+		
+		JLabel jLCross = new JLabel("");
+		jLCross.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		jLCross.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//frmWelcome.dispose();
+				System.exit(0);
+			}
+		});
+		
+		jLMinimize = new JLabel("");
+		jLMinimize.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		jLMinimize.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				frmWelcome.setState(JFrame.ICONIFIED);
+			}
+		});
+		jLMinimize.setBounds(410, 0, 15, 22);
+		frmWelcome.getContentPane().add(jLMinimize);
+		jLCross.setBounds(428, 0, 17, 22);
+		frmWelcome.getContentPane().add(jLCross);
 		tFPassHint.setToolTipText("Please enter your email address here");
 		tFPassHint.setText("Password");
 		tFPassHint.setForeground(Color.GRAY);
@@ -369,7 +402,8 @@ public class LoginWindow {
 		tFPass.setBounds(88, 390, 259, 34);
 		frmWelcome.getContentPane().add(tFPass);
 
-		jLBG = new JLabel("New label");
+		jLBG = new JLabel("");
+		
 		jLBG.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -384,15 +418,18 @@ public class LoginWindow {
 						new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/default.png")).getImage()
 								.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
 				jl1.setIcon(imageIcon);
+				
 
 			}
 		});
 
-		jLBG.setBounds(0, 0, 436, 623);
-		// String bgImage="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg5.jpg";
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg5.jpg"))
-				.getImage().getScaledInstance(436, 623, Image.SCALE_DEFAULT));
-		jLBG.setIcon(imageIcon2);
+		jLBG.setBounds(0, 0, 450, 650);
+		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg5.png"))
+				.getImage().getScaledInstance(450, 650, Image.SCALE_DEFAULT));
+		//436, 623
+		//jLBG.setIcon("C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg5.png");
+		// jLBG.setIcon(imageIcon2);
+		jLBG.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg9.png")));
 
 //			final BufferedImage img=new ImgUtils().scaleImage(436,623,bgImage);
 		// create label with image as background
