@@ -30,6 +30,7 @@ import java.awt.event.FocusEvent;
 import java.awt.Cursor;
 import java.awt.Insets;
 import javax.swing.border.TitledBorder;
+import java.awt.event.MouseMotionAdapter;
 
 public class LoginWindow {
 
@@ -91,12 +92,31 @@ public class LoginWindow {
 
 //	String pos_string=Integer.toString(pos);
 //	String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+pos+".png";
-		ImageIcon imageIcon = new ImageIcon(
-				new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/" + pos + ".png")).getImage()
-						.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-		jl1.setIcon(imageIcon);
+//		ImageIcon imageIcon = new ImageIcon(
+//				new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/" + pos + ".png")).getImage()
+//						.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
+//		jl1.setIcon(imageIcon);
+		
+		
+		
+		jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/"+pos+".png")));
+		
 
 	}
+	
+	public void changephoto2(String pos) {
+
+//		String pos_string=Integer.toString(pos);
+//		String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+pos+".png";
+		jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/Finalwal/"+pos+".png")));
+		//	jl1.setIcon(imageIcon);
+			//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/new/default.png")));
+
+		}
+	
+	
+	
+	
 
 	public void validation(String email, String pass) {
 
@@ -115,6 +135,7 @@ public class LoginWindow {
 		} else {
 			jlResult.setText("Incorrect Email.");
 			changephoto("confuse");
+			//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/confuse3.png")));
 		}
 
 	}// Validation()
@@ -142,7 +163,7 @@ public class LoginWindow {
 			public void propertyChange(PropertyChangeEvent evt) {
 			}
 		});
-		jl1.setBounds(105, 125, 243, 204);
+		jl1.setBounds(105, 115, 220, 220);
 
 		changephoto("default");
 
@@ -236,6 +257,20 @@ public class LoginWindow {
 				frmWelcome.setState(JFrame.ICONIFIED);
 			}
 		});
+		
+		JLabel jLWindowBar = new JLabel("");
+		jLWindowBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int cordinatesX=e.getXOnScreen();
+				int cordinatesY=e.getYOnScreen();
+				
+				frmWelcome.setLocation(cordinatesX,cordinatesY);
+				
+			}
+		});
+		jLWindowBar.setBounds(0, 0, 405, 22);
+		frmWelcome.getContentPane().add(jLWindowBar);
 		jLMinimize.setBounds(410, 0, 15, 22);
 		frmWelcome.getContentPane().add(jLMinimize);
 		jLCross.setBounds(428, 0, 17, 22);
@@ -258,6 +293,7 @@ public class LoginWindow {
 		tEmailHint.setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
 		tEmailHint.setBounds(88, 345, 259, 34);
 		frmWelcome.getContentPane().add(tEmailHint);
+		jlResult.setForeground(Color.BLACK);
 		jlResult.setHorizontalAlignment(SwingConstants.CENTER);
 		jlResult.setFont(new Font("Trebuchet MS", Font.PLAIN, 13));
 
@@ -317,6 +353,7 @@ public class LoginWindow {
 				if (txtfieldlen <= 2 && txtfieldlen >= 0) {
 
 					changephoto("1");
+					//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/1.png")));
 
 				}
 
@@ -393,7 +430,8 @@ public class LoginWindow {
 				ImageIcon imageIcon = new ImageIcon(
 						new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/11.png")).getImage()
 								.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-				jl1.setIcon(imageIcon);
+			//	jl1.setIcon(imageIcon);
+				changephoto("11");
 
 			}
 		});
@@ -414,18 +452,19 @@ public class LoginWindow {
 				// iconlink=getClass().getResource("Peek-a-boo-LoginPage/Images/Image1.png");
 				// ImageIcon icon = new
 				// ImageIcon(LoginWindoww.class.getResource("/Images/Image1.png"));
-				ImageIcon imageIcon = new ImageIcon(
-						new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/default.png")).getImage()
-								.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-				jl1.setIcon(imageIcon);
+			//	ImageIcon imageIcon = new ImageIcon(
+			//			new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/default.png")).getImage()
+			//					.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
+			//	jl1.setIcon(imageIcon);
+				changephoto("default");
 				
 
 			}
 		});
 
 		jLBG.setBounds(0, 0, 450, 650);
-		ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg5.png"))
-				.getImage().getScaledInstance(450, 650, Image.SCALE_DEFAULT));
+	//	ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg5.png"))
+	//			.getImage().getScaledInstance(450, 650, Image.SCALE_DEFAULT));
 		//436, 623
 		//jLBG.setIcon("C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg5.png");
 		// jLBG.setIcon(imageIcon2);
