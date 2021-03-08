@@ -1,42 +1,35 @@
 import java.awt.EventQueue;
 import java.awt.Image;
-import java.awt.RenderingHints;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import javax.swing.JPasswordField;
 import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.SystemColor;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Cursor;
-import java.awt.Insets;
-import javax.swing.border.TitledBorder;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.border.LineBorder;
+
 
 public class LoginWindow {
-
+    
+	//Declaring all components here
 	private JFrame frmWelcome;
 	public JTextField tFEmail;
-	private JLabel jLTemp;
 	private JPasswordField tFPass;
 	private JLabel jLBG;
 	private JLabel jl1 = new JLabel("");
@@ -48,6 +41,7 @@ public class LoginWindow {
 	
 
 	/**
+	 * main method
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -61,64 +55,25 @@ public class LoginWindow {
 				}
 			}
 		});
-	}
+	}//main() method
 
 	/**
-	 * Create the application.
+	 * Create the GUI application.
 	 */
 	public LoginWindow() {
 		initialize();
 	}
+	
 
-	public void hintText(String text) {
-		if (tFEmail.getText().isEmpty()) {
-			tFEmail.setForeground(Color.GRAY);
-			tFEmail.setFont(new Font("Tahoma", Font.ITALIC, 14));
-
-			tFEmail.setText(text);
-		}
-
-	}// hintText Ends here
-
-	public void defaultText() {
-
-		tFEmail.setForeground(Color.BLACK);
-		// tFEmail.setToolTipText("Please enter your email address here");
-		tFEmail.setFont(new Font("Tahoma", Font.PLAIN, 17));
-
-	}// defaultText Ends here
-
-	public void changephoto(String pos) {
-
-//	String pos_string=Integer.toString(pos);
-//	String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+pos+".png";
-//		ImageIcon imageIcon = new ImageIcon(
-//				new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/" + pos + ".png")).getImage()
-//						.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-//		jl1.setIcon(imageIcon);
-		
-		
-		
+	public void changephoto(String pos) {		
+		//This method is responsible for changing Character photos.
 		jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/"+pos+".png")));
 		
-
-	}
-	
-	public void changephoto2(String pos) {
-
-//		String pos_string=Integer.toString(pos);
-//		String iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\"+pos+".png";
-		jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/Finalwal/"+pos+".png")));
-		//	jl1.setIcon(imageIcon);
-			//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/new/default.png")));
-
-		}
-	
-	
-	
-	
+	}//changephoto()
+		
 
 	public void validation(String email, String pass) {
+		//Email & Password validation & verification.
 
 		if (email.equals("waleedahmed2021@gmail.com")) {
 
@@ -135,15 +90,10 @@ public class LoginWindow {
 		} else {
 			jlResult.setText("Incorrect Email.");
 			changephoto("confuse");
-			//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/confuse3.png")));
 		}
 
 	}// Validation()
 
-	public void char_counter() {
-		int[] myIntArray = new int[30];
-		System.out.println("Total Chars right now is: ");
-	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -152,7 +102,6 @@ public class LoginWindow {
 		frmWelcome = new JFrame();
 		frmWelcome.setUndecorated(true);
 		frmWelcome.setTitle("Welcome");
-		// frame.setBounds(0, 0, 650, 600);
 		frmWelcome.setSize(450, 650);
 		frmWelcome.setLocationRelativeTo(null);
 		frmWelcome.setResizable(false);
@@ -164,21 +113,21 @@ public class LoginWindow {
 			}
 		});
 		jl1.setBounds(105, 115, 220, 220);
-
 		changephoto("default");
 
 		btnLogIn = new JButton("Log In..");
-		btnLogIn.setBorder(null);
+		btnLogIn.setForeground(new Color(0, 0, 0));
+		btnLogIn.setBackground(new Color(72, 61, 139));
+		btnLogIn.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		btnLogIn.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				// log In button here
+				//LogIn Btn
+				//This btn take email & pass and throw them to validation method.
 				String email0 = tFEmail.getText();
 				String pass0 = tFPass.getText();
-				// jlResult.setText(jpasswordField.getText());
 				validation(email0, pass0);
 				
-				
-
 			}
 		});
 		
@@ -186,6 +135,8 @@ public class LoginWindow {
 		tEmailHint.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				
+				//Using textfield for "username" hint.
 				
 				if(tFEmail.getText().isEmpty()) {
 					tFEmail.setEnabled(true);
@@ -209,18 +160,14 @@ public class LoginWindow {
 		tFPassHint = new JTextField();
 		tFPassHint.addFocusListener(new FocusAdapter() {
 			@Override
+			
+			//Using textfield for "password" hint.
 			public void focusGained(FocusEvent e) {
-				
-                    
-					
 					
 					tFPass.setEnabled(true);
 					tFPass.setVisible(true);
 					tFPassHint.setEnabled(false);
-					tFPassHint.setVisible(false);
-					
-				//	tFEmailHint.setEnabled(false);
-				
+					tFPassHint.setVisible(false);				
 				
 			}
 		});
@@ -229,12 +176,11 @@ public class LoginWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-			//	if(tFPass.getText().isEmpty()) {
 					tFPass.setEnabled(true);
 					tFPass.setVisible(true);
 					tFPassHint.setEnabled(false);
 					tFPassHint.setVisible(false);}
-		//	}
+		
 		});
 		
 		JLabel jLCross = new JLabel("");
@@ -242,8 +188,7 @@ public class LoginWindow {
 		jLCross.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				//frmWelcome.dispose();
+				//Custom window closing btn
 				System.exit(0);
 			}
 		});
@@ -253,7 +198,7 @@ public class LoginWindow {
 		jLMinimize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				//Custom window minimizing btn
 				frmWelcome.setState(JFrame.ICONIFIED);
 			}
 		});
@@ -262,6 +207,7 @@ public class LoginWindow {
 		jLWindowBar.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
+				//Window dragging using X,Y cordinates.
 				int cordinatesX=e.getXOnScreen();
 				int cordinatesY=e.getYOnScreen();
 				
@@ -269,13 +215,14 @@ public class LoginWindow {
 				
 			}
 		});
+		//All components visual details
 		jLWindowBar.setBounds(0, 0, 405, 22);
 		frmWelcome.getContentPane().add(jLWindowBar);
 		jLMinimize.setBounds(410, 0, 15, 22);
 		frmWelcome.getContentPane().add(jLMinimize);
 		jLCross.setBounds(428, 0, 17, 22);
 		frmWelcome.getContentPane().add(jLCross);
-		tFPassHint.setToolTipText("Please enter your email address here");
+		tFPassHint.setToolTipText("Please enter your Password here");
 		tFPassHint.setText("Password");
 		tFPassHint.setForeground(Color.GRAY);
 		tFPassHint.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -285,7 +232,7 @@ public class LoginWindow {
 		tFPassHint.setBounds(88, 390, 259, 34);
 		frmWelcome.getContentPane().add(tFPassHint);
 		tEmailHint.setText("Username");
-		tEmailHint.setToolTipText("Please enter your email address here");
+		tEmailHint.setToolTipText("Please enter your Email Address/Username here");
 		tEmailHint.setForeground(Color.GRAY);
 		tEmailHint.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tEmailHint.setDisabledTextColor(Color.WHITE);
@@ -299,7 +246,7 @@ public class LoginWindow {
 
 		jlResult.setBounds(122, 472, 184, 22);
 		frmWelcome.getContentPane().add(jlResult);
-		btnLogIn.setFont(new Font("Trebuchet MS", Font.BOLD, 19));
+		btnLogIn.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		btnLogIn.setBounds(158, 436, 119, 34);
 		frmWelcome.getContentPane().add(btnLogIn);
 
@@ -316,15 +263,11 @@ public class LoginWindow {
 					tEmailHint.setVisible(true);
 					tFEmail.setEnabled(false);
 					tFEmail.setVisible(false);
-					
-				//	tFEmailHint.setEnabled(false);
 				}
 				else
 				{
 					tEmailHint.setEnabled(false);
 					tEmailHint.setVisible(false);
-					//tFEmail.setEnabled(false);
-					//tFEmail.setVisible(false);
 				}
 
 			}
@@ -340,65 +283,45 @@ public class LoginWindow {
 		tFEmail.setToolTipText("Please enter your email address here");
 
 		tFEmail.setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
-		tFEmail.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		// hintText();
+		tFEmail.setFont(new Font("Bahnschrift", Font.BOLD, 17));
 		tFEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				// key pressing prog here
+				//Main logics behind character reactions.
 
 				int txtfieldlen = tFEmail.getText().length();
-				jLTemp.setText(Integer.toString(txtfieldlen + 1));
 
 				if (txtfieldlen <= 2 && txtfieldlen >= 0) {
 
-					changephoto("1");
-					//jl1.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/1.png")));
-
-				}
+					changephoto("1"); }
 
 				else if (txtfieldlen <= 6 && txtfieldlen >= 3) {
 
-					changephoto("3");
-
-				}
+					changephoto("3"); }
 
 				else if (txtfieldlen <= 10 && txtfieldlen >= 7) {
 
-					changephoto("5");
+					changephoto("5"); }
+				
+				else if (txtfieldlen <= 15 && txtfieldlen >= 11) {
 
-				} else if (txtfieldlen <= 15 && txtfieldlen >= 11) {
+					changephoto("7"); }
 
-					changephoto("7");
+				else if (txtfieldlen <= 20 && txtfieldlen >= 16) {
 
-				} else if (txtfieldlen <= 20 && txtfieldlen >= 16) {
-
-					changephoto("9");
-
-				}
+					changephoto("9"); }
 
 				else {
 
-					changephoto("10");
+					changephoto("10"); }
 
-				}
+			}//keypressed
 
-			}
-
-			
-
-			
-			
-			
 		});
 
 		tFEmail.setBounds(88, 345, 259, 34);
 		frmWelcome.getContentPane().add(tFEmail);
 		tFEmail.setColumns(10);
-
-		jLTemp = new JLabel("0");
-		jLTemp.setBounds(327, 571, 49, 14);
-		frmWelcome.getContentPane().add(jLTemp);
 
 		tFPass = new JPasswordField();
 		tFPass.addFocusListener(new FocusAdapter() {
@@ -411,8 +334,6 @@ public class LoginWindow {
 					tFPassHint.setVisible(true);
 					tFPass.setEnabled(false);
 					tFPass.setVisible(false);
-					
-				//	tFEmailHint.setEnabled(false);
 				}
 			}
 		});
@@ -422,15 +343,8 @@ public class LoginWindow {
 			@Override
 			public void keyPressed(KeyEvent e) {
 
-				// Password key pressed here
-				String iconlink = "C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\11.png";
-				// ImageIcon imageIcon = new ImageIcon(new
-				// ImageIcon(iconlink).getImage().getScaledInstance(190, 190,
-				// Image.SCALE_DEFAULT));
-				ImageIcon imageIcon = new ImageIcon(
-						new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/11.png")).getImage()
-								.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-			//	jl1.setIcon(imageIcon);
+				// Password key
+				
 				changephoto("11");
 
 			}
@@ -445,35 +359,13 @@ public class LoginWindow {
 		jLBG.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				// String
-				// iconlink="C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\Moveable\\default.png";
-				// String
-				// iconlink=getClass().getResource("Peek-a-boo-LoginPage/Images/Image1.png");
-				// ImageIcon icon = new
-				// ImageIcon(LoginWindoww.class.getResource("/Images/Image1.png"));
-			//	ImageIcon imageIcon = new ImageIcon(
-			//			new ImageIcon(LoginWindow.class.getResource("/Images/Moveable/default.png")).getImage()
-			//					.getScaledInstance(190, 190, Image.SCALE_DEFAULT));
-			//	jl1.setIcon(imageIcon);
-				changephoto("default");
 				
-
-			}
+				changephoto("default"); 
+				}//mouseclicked
 		});
 
 		jLBG.setBounds(0, 0, 450, 650);
-	//	ImageIcon imageIcon2 = new ImageIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg5.png"))
-	//			.getImage().getScaledInstance(450, 650, Image.SCALE_DEFAULT));
-		//436, 623
-		//jLBG.setIcon("C:\\GitHub\\Peek-a-boo-LoginPage\\src\\Images\\PanelBg5.png");
-		// jLBG.setIcon(imageIcon2);
-		jLBG.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg9.png")));
-
-//			final BufferedImage img=new ImgUtils().scaleImage(436,623,bgImage);
-		// create label with image as background
-//			jLBG label=new jLBG(new ImageIcon((Image)img));
-
+		jLBG.setIcon(new ImageIcon(LoginWindow.class.getResource("/Images/PanelBg.png")));
 		frmWelcome.getContentPane().add(jLBG);
 	}// initialize()
 }// LoginWindow()
